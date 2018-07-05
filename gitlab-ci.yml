@@ -22,8 +22,8 @@ build site-recaptcha:
 
 deploy site-recaptcha:
   stage: deploy
-  variables:
-    GIT_STRATEGY: none
+  # variables:
+  #   GIT_STRATEGY: none
   cache:
     key: site-package
     policy: pull

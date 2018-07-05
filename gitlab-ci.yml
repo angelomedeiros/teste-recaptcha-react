@@ -8,11 +8,15 @@ build site-recaptcha:
     paths:
       - ./build
   script:
+    - ls
     - npm i
     - npm run build
+    - ls
 
 deploy site-recaptcha:
   stage: deploy
+  variables:
+    GIT_STRATEGY: none
   cache:
     key: site-build
     policy: pull

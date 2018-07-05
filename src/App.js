@@ -13,6 +13,7 @@ const callback = () => {
 
 const verifyCallback = (response) => {
   console.log(response);
+  document.getElementById("formTest").submit();
 };
 
 const expiredCallback = () => {
@@ -43,7 +44,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <div style={{
+        <form id='formTest' style={{
           textAlign: '-webkit-center'
         }}>
           <h1>Google Recaptcha</h1>
@@ -62,10 +63,10 @@ class App extends Component {
           >
             Reset
           </button>
-        </div>
-        <button onClick={executeCaptcha}>
-         Submit
-        </button>
+          <button onClick={executeCaptcha}>
+           Submit
+          </button>
+        </form>
       </div>
     );
   }

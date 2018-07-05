@@ -4,7 +4,7 @@ import './App.css';
 import  Recaptcha  from 'react-recaptcha'
 
 // site key
-const sitekey = '6Lfhd2IUAAAAAAhJs9NDeUKzUl7_eKJMRZ8YxmNV';
+const sitekey = '6Lf6gWIUAAAAAHoO8SNC-V70vV2I4mDm0IcpAIKm';
 
 // specifying your onload callback function
 const callback = () => {
@@ -46,7 +46,7 @@ class App extends Component {
           <Recaptcha
             ref={e => recaptchaInstance = e}
             sitekey={sitekey}
-            size="compact"
+            size="invisible"
             render="explicit"
             verifyCallback={verifyCallback}
             onloadCallback={callback}

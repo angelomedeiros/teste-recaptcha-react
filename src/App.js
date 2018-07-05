@@ -27,6 +27,10 @@ const resetRecaptcha = () => {
   recaptchaInstance.reset();
 };
 
+const executeCaptcha = function () {
+  recaptchaInstance.execute();
+};
+
 class App extends Component {  
 
   render() {
@@ -59,6 +63,9 @@ class App extends Component {
             Reset
           </button>
         </div>
+        <button onClick={executeCaptcha}>
+         Submit
+        </button>
       </div>
     );
   }

@@ -11,14 +11,14 @@ build site-recaptcha:
     key: site-package
     policy: push
     paths:
-      - ./
+      - ./build
   before_script:
-    - ls
+    - ls ./build
   script:
     - npm i
     - npm run build
   after_script:
-    - ls
+    - ls ./build
 
 deploy site-recaptcha:
   stage: deploy
@@ -28,8 +28,8 @@ deploy site-recaptcha:
     key: site-package
     policy: pull
   before_script:
-    - ls
+    - ls ./build
   script:
     - npx surge --project ./build --domain recaptcha.angelomedeiros.surge.sh
   after_script:
-    - ls
+    - ls ./build

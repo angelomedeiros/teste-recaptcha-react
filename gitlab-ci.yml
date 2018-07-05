@@ -1,16 +1,23 @@
 image: node
 
+stages:
+  - test
+  - build
+  - deploy
+
 build site-recaptcha:
   stage: build
   cache:
-    key: site-build
+    key: site-package
     policy: push
     paths:
-      - ./build
-  script:
+      - ./
+  before_script:
     - ls
+  script:
     - npm i
     - npm run build
+  after_script:
     - ls
 
 deploy site-recaptcha:
@@ -18,8 +25,11 @@ deploy site-recaptcha:
   variables:
     GIT_STRATEGY: none
   cache:
-    key: site-build
+    key: site-package
     policy: pull
-  script:
+  before_script:
     - ls
+  script:
     - npx surge --project ./build --domain recaptcha.angelomedeiros.surge.sh
+  after_script:
+    - ls

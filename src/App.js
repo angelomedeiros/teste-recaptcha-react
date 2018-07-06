@@ -12,7 +12,7 @@ const callback = () => {
 };
 
 const verifyCallback = (response) => {
-  console.log(response);
+  console.log('Response', response);
   document.getElementById("formTest").submit();
 };
 
@@ -56,6 +56,7 @@ class App extends Component {
             verifyCallback={verifyCallback}
             onloadCallback={callback}
             expiredCallback={expiredCallback}
+            hl='pt-BR'
           />
           <br/>
           <button

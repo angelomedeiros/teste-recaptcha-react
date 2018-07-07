@@ -4,32 +4,20 @@ import './App.css';
 import  Recaptcha  from 'react-recaptcha'
 
 // site key
-const sitekey = '6Lf6gWIUAAAAAHoO8SNC-V70vV2I4mDm0IcpAIKm';
+const sitekey = '6LewumIUAAAAACvXZqjjTzVK5XsrLno71ZxlA9CY';
 
-// specifying your onload callback function
-const callback = () => {
-  console.log('Done!!!!');
-};
-
-const verifyCallback = (response) => {
-  console.log('Response', response);
-  document.getElementById("formTest").submit();
-};
-
-const expiredCallback = () => {
-  console.log(`Recaptcha expired`);
-};
-
-// define a variable to store the recaptcha instance
 let recaptchaInstance;
 
-// handle reset
-const resetRecaptcha = () => {
-  recaptchaInstance.reset();
-};
-
+// manually trigger reCAPTCHA execution
 const executeCaptcha = function () {
   recaptchaInstance.execute();
+};
+
+// executed once the captcha has been verified
+// can be used to post forms, redirect, etc.
+const verifyCallback = function (response) {
+  console.log(response);
+  document.getElementById("someForm").submit();
 };
 
 class App extends Component {  
@@ -44,30 +32,23 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <form id='formTest' style={{
-          textAlign: '-webkit-center'
-        }}>
-          <h1>Google Recaptcha</h1>
-          <Recaptcha
-            ref={e => recaptchaInstance = e}
-            sitekey={sitekey}
-            size="invisible"
-            render="explicit"
-            verifyCallback={verifyCallback}
-            onloadCallback={callback}
-            expiredCallback={expiredCallback}
-            hl='pt-BR'
-          />
-          <br/>
-          <button
-            onClick={resetRecaptcha}
-          >
-            Reset
-          </button>
-          <button onClick={executeCaptcha}>
-           Submit
-          </button>
-        </form>
+        <div>
+           <form id="someForm" action="/search" method="get">
+             <input type="text" name="query" />
+           </form>
+           <button
+             onClick={executeCaptcha}
+           >
+            Submit
+           </button>
+
+           <Recaptcha
+             ref={e => recaptchaInstance = e}
+             sitekey="6LewumIUAAAAACvXZqjjTzVK5XsrLno71ZxlA9CY"
+             size="invisible"
+             verifyCallback={verifyCallback}
+           />
+         </div>        
       </div>
     );
   }
